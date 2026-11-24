@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101c32">
+  <title>Le grand quiz — prototype</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="javascript.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">Q</span><div><p class="eyebrow">LE GRAND QUIZ</p><h1>À vous de jouer</h1></div></div>
+      <div class="round-pill"><span class="live-dot"></span> MANCHE <strong id="round-number">1</strong></div>
+    </header>
+
+    <section class="game-layout" aria-label="Plateau de jeu">
+      <div class="main-column">
+        <section class="timer-card" aria-label="Minuterie">
+          <div class="timer-copy"><p class="eyebrow">TEMPS RESTANT</p><p class="timer-hint" id="timer-status">Prêt quand vous l’êtes</p></div>
+          <div class="timer" id="timer" aria-live="off">30<span>s</span></div>
+          <div class="timer-track"><div id="timer-bar"></div></div>
+          <div class="timer-controls"><button class="button button-light" id="start-timer">Démarrer</button><button class="button button-quiet" id="reset-timer">Réinitialiser</button></div>
+        </section>
+
+        <section class="question-card">
+          <div class="question-top"><span class="tag" id="question-category">CULTURE GÉNÉRALE</span><span class="question-count" id="question-count">QUESTION 1 / 10</span></div>
+          <p class="question-label">La question</p>
+          <h2 id="question-text">Chargement de la question…</h2>
+          <p class="answer-note" id="answer-note">Le candidat qui buzze répond. L’arbitre valide ou passe la main.</p>
+          <div class="question-actions"><button class="button button-outline" id="skip-question">Passer la question <span aria-hidden="true">→</span></button><button class="button button-quiet" id="show-answer">Voir la réponse</button></div>
+        </section>
+
+        <section class="judge-panel" aria-label="Commandes de l’arbitre">
+          <div class="judge-heading"><div><p class="eyebrow">ESPACE ARBITRE</p><h2>À vous de trancher</h2></div><span class="judge-status" id="judge-status">En attente d’un buzzer</span></div>
+          <div class="judge-actions"><button class="button button-correct" id="correct-answer" disabled><span>✓</span> Bonne réponse</button><button class="button button-wrong" id="wrong-answer" disabled><span>↻</span> Mauvaise réponse</button></div>
+          <p class="judge-help" id="judge-help">Quand un joueur buzze, choisissez le résultat de sa réponse.</p>
+        </section>
+      </div>
+
+      <aside class="side-column">
+        <section class="players-card"><div class="section-heading"><div><p class="eyebrow">LES CANDIDATS</p><h2>Le classement</h2></div><span class="mini-icon">♟</span></div>
+          <div id="players-list" class="players-list"></div>
+          <button class="add-player" id="add-player"><span>＋</span> Ajouter un candidat</button>
+        </section>
+        <section class="buzzer-card"><div class="section-heading"><div><p class="eyebrow">À VOUS DE BUZZER</p><h2>Le buzzer</h2></div><span class="buzzer-signal" id="buzzer-signal"></span></div>
+          <button class="buzzer" id="buzzer" aria-label="Buzzer"><span class="buzzer-inner"><span class="buzzer-label">BUZZ</span><span class="buzzer-subtitle">APPUYEZ ICI</span></span></button>
+          <p class="buzzer-status" id="buzzer-status">Le premier à buzzer prend la main.</p>
+          <p class="keyboard-tip">Raccourci clavier : <kbd>Espace</kbd></p>
+        </section>
+        <section class="rules-card"><span class="rules-icon">i</span><p><strong>Le rôle de l’arbitre</strong><br>Un clic sur « Bonne réponse » ajoute un point. Une erreur libère le buzzer pour les autres.</p></section>
+      </aside>
+    </section>
+    <footer><span>Prototype de jeu • À personnaliser selon vos règles</span><button id="new-game" class="new-game">Nouvelle partie <span>↗</span></button></footer>
+  </main>
+  <dialog id="player-dialog"><form method="dialog" id="player-form"><p class="eyebrow">NOUVEAU CANDIDAT</p><h2>Qui joue ?</h2><label for="player-name">Prénom ou nom d’équipe</label><input id="player-name" name="player-name" maxlength="24" placeholder="Ex. Les Curieux" required><div class="dialog-actions"><button class="button button-quiet" value="cancel">Annuler</button><button class="button button-light" id="save-player" value="default">Ajouter</button></div></form></dialog>
+</body>
+</html>
